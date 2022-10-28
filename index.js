@@ -1,8 +1,11 @@
 const express = require('express')
+const cors = require('cors')
+
+
 const api = express()
+api.use(cors())
 
-
-api.get('/', (req, res) => {
+api.get('/', cors(), (req, res) => {
     res.json({ 
         'slackUsername': 'MunaMia',
         'backend': true,
