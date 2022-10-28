@@ -7,7 +7,7 @@ api.get('/', (req, res) => {
         'slackUsername': 'MunaMia',
         'backend': true,
         'age': 30,
-        'bio': 'I am an Electronic Engineer with interest in software development'
+        'bio': 'I am an Electronic Engineer with interest in software development. I am a Manchester United fan'
     })
 })
 
