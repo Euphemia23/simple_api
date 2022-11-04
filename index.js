@@ -42,32 +42,41 @@ function detectOperationType (w) {
 }
 
 api.post('/calculator', cors(), (req, res) => {
+
+    // ensure the request is a POST
+    if (req.method === 'POST') {
     
-    req.on('data', (data) => {
+        req.on('data', (data) => {
 
-        const { operation_type, x, y } = JSON.parse(data.toString())
+            const { operation_type, x, y } = JSON.parse(data.toString())
 
-        const operationType = detectOperationType(operation_type)
-        let result = 0
+            const operationType = detectOperationType(operation_type)
+            let result = 0
 
-        if (operationType === 'addition') {
-            result = x + y
-        } else if (operationType === 'subtraction') {
-            result = x - y
-        } else if (operationType === 'multiplication') {
-            result = x * y
-        } else {
-            result = 0
-        }
+            if (operationType === 'addition') {
+                result = x + y
+            } else if (operationType === 'subtraction') {
+                result = x - y
+            } else if (operationType === 'multiplication') {
+                result = x * y
+            } else {
+                result = 0
+            }
 
+            res.json({ 
+                'slackUsername': 'MunaMia',
+                'operation_type': operationType,
+                'result': result
+            })
+        })
+    } else {
+        res.status(400)
         res.json({ 
             'slackUsername': 'MunaMia',
-            'operation_type': operationType,
-            'result': result
+            'error': 'Invalid request'
         })
-    })
+    }
 })
-
 
 api.listen(process.env.PORT || 3000, () => {
     console.log('Server is running on port 3000')
