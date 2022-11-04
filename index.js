@@ -21,7 +21,7 @@ function detectOperationType (w) {
 
     const posibleAddition = ['add', 'plus', 'sum', 'addition', 'add together', 'sum up', 'add up', 'add up together', 'sum together']
     const posibleSubtraction = ['subtract', 'minus', 'remove', 'difference', 'subtraction', 'subtract from', 'minus from', 'difference from', 'subtract from each other', 'minus from each other', 'difference from each other']
-    const posibleMultiplication = ['multiply', 'product', 'multiplication', 'multiply together', 'product of', 'multiply by', 'product by', 'multiply by each other', 'product by each other', 'multiply together', 'product together', 'times']
+    const posibleMultiplication = ['multiply', 'product', 'multiplication', 'multiply together', 'product of', 'multiply by', 'product by', 'multiply by each other', 'product by each other', 'multiply together', 'product together']
     const multiplySign = ['*', 'x', 'X', '×', 'times']
     
     if (posibleAddition.some(v => w.includes(v))) {
