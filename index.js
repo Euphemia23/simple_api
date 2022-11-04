@@ -18,18 +18,19 @@ api.get('/', cors(), (req, res) => {
 })
 
 function detectOperationType (w) {
-    posibleAddition = ['add', 'plus', 'sum', 'addition', 'add together', 'sum up', 'add up', 'add up together', 'sum together']
-    posibleSubtraction = ['subtract', 'minus', 'remove', 'difference', 'subtraction', 'subtract from', 'minus from', 'difference from', 'subtract from each other', 'minus from each other', 'difference from each other']
-    posibleMultiplication = ['multiply', 'product', 'multiplication', 'multiply together', 'product of', 'multiply by', 'product by', 'multiply by each other', 'product by each other']
+
+    const posibleAddition = ['add', 'plus', 'sum', 'addition', 'add together', 'sum up', 'add up', 'add up together', 'sum together']
+    const posibleSubtraction = ['subtract', 'minus', 'remove', 'difference', 'subtraction', 'subtract from', 'minus from', 'difference from', 'subtract from each other', 'minus from each other', 'difference from each other']
+    const posibleMultiplication = ['multiply', 'product', 'multiplication', 'multiply together', 'product of', 'multiply by', 'product by', 'multiply by each other', 'product by each other']
     
-    if (posibleAddition.includes(w)) {
+    if (posibleAddition.some(v => w.includes(v))) {
         return 'addition'
-    } else if (posibleSubtraction.includes(w)) {
+    } else if (posibleSubtraction.some(v => w.includes(v))) {
         return 'subtraction'
-    } else if (posibleMultiplication.includes(w)) {
+    } else if (posibleMultiplication.some(v => w.includes(v))) {
         return 'multiplication'
     } else {
-        return 'addition'
+        return 'unknown'
     }
 }
 
@@ -49,7 +50,7 @@ api.post('/calculator', cors(), (req, res) => {
         } else if (operationType === 'multiplication') {
             result = x * y
         } else {
-            result = x + y
+            result = 0
         }
 
         res.json({ 
